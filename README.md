@@ -3,15 +3,15 @@ Military Working Dog - Add tracking features with dog etc to the scenario
 
 Usage:
 
-// 1. Add the mwd folder to your mission directory.
+1. Add the mwd folder to your mission directory.
 
-// 2. Put this line in the "init.sqf" to initiate MWD features:
+2. Put this line in the "init.sqf" to initiate MWD features:
 The file MWDInit.sqf contain settings. 
 You will only need to change "MWD_Respawn" and "MWD_Debug".
 
 [] execVM "mwd\MWDInit.sqf";
 
-// 3. Add the following classes in the mission definition file (description.ext):
+3. Add the following classes in the mission definition file (description.ext):
 
 class CfgFunctions 
 { 
@@ -87,10 +87,10 @@ class CfgSounds
 	};			
 };
 
-// 4. Put this command in the init section of a group that should leave tracks:
+4. Put this command in the init section of any group that should leave tracks:
 
 this setVariable ["MWD_Tracked", true]
 
-// 5. Put this command in the init section of a unit to set dog handler role:
+5. Put this command in the init section of any unit to set dog handler role:
 
 this setVariable ["MWD_Handler", true]
