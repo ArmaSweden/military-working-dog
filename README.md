@@ -3,7 +3,7 @@ Military Working Dog - Add tracking features with dog etc to the scenario
 
 Usage:
 
-1. Add the mwd folder to your mission directory.
+// 1. Add the mwd folder to your mission directory.
 
 // 2. Put this line in the "init.sqf" to initiate MWD features:
 [] execVM "mwd\MWDInit.sqf";
