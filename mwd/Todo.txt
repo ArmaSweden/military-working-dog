@@ -1,0 +1,7 @@
+- Det kändes som att hunden sökte i slumpmässig riktning i bland. Vet inte om den springer dit jag är riktad eller dit jag tittar (t.ex. om jag tittar runt med TrackIR). Hade varit användbart med en crosshair mot riktningen, likt hur det ser ut när man kontrollerar AI.
+
+- Hunden går inte ner för backar, utan den "guppar" ner, vilket kanske inte registreras som att den har rört sig ett visst avstånd. Jag gissar att du har någon timeout som går ut, innan hunden har lyckats samla på sig en viss sträcka, som gör att hunden återvänder till föregående punkt.
+
+- Två hundar per grupp hade nog varit roligare för gruppen, då andra omgång också kan söka ett område och inte bara följa efter första omgång. Det hade varit intressant med en QRF-grupp som flyger in när mål hittas.
+
+- Hunden bör skälla högre än vad den gör nu. Det var dessutom ett väldigt användbart och inlevelserikt sätt att lokalisera hunden på. Jag använde aldrig "hitta hund" funktionen.
