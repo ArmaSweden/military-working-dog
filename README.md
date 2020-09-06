@@ -8,7 +8,7 @@ Usage:
 // 2. Put this line in the "init.sqf" to initiate MWD features:
 [] execVM "mwd\MWDInit.sqf";
 
-// 3. Add the following classes in mission definition file (description.ext):
+// 3. Add the following classes in the mission definition file (description.ext):
 
 class CfgFunctions 
 { 
