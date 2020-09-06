@@ -6,6 +6,8 @@ Usage:
 // 1. Add the mwd folder to your mission directory.
 
 // 2. Put this line in the "init.sqf" to initiate MWD features:
+// MWDInit.sqf contain settings. You will only need to change "MWD_Respawn" and "MWD_Debug".
+
 [] execVM "mwd\MWDInit.sqf";
 
 // 3. Add the following classes in the mission definition file (description.ext):
