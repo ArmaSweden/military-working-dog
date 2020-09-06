@@ -1,5 +1,5 @@
 # mwd
-Military Working Dog - Add tracking features with dog etc to the scenario
+Military Working Dog - Add tracking features with dog to the scenario
 
 Usage:
 
