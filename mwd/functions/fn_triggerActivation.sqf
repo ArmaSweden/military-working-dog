@@ -58,7 +58,7 @@ if (!isNull _dog && _unit == _dog) then {
 		};
 	};
 		
-	// If we reached this point, the dog is not currently tracking, let's get into tracking mode!
+	// If we reached this point, the dog is not currently tracking, let's get it into tracking mode!
 	
 	// Set the dog into tracking mode for this group
 	_dog setVariable ["MWD_Status", "TRACKING"];

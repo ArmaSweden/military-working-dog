@@ -10,7 +10,7 @@ if (MWD_Debug) then {
 switch _sayWhat do {
 
 	case "bark": {
-		_sound = selectRandomWeighted ["bark_single", 0.1, "barks_double", 0.5, "barks", 0.5];
+		_sound = selectRandomWeighted ["bark_single", 0.1, "barks_double", 0.4, "barks", 0.5];
 		_dog say _sound;
 	};
 	

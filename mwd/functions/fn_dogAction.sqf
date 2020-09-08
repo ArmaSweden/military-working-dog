@@ -54,7 +54,7 @@ params ["_dog"];
 				_dog setDestination [getPosATL _nearbyStranger, "LEADER DIRECT", false];
 				[_dog, "barking", 1] remoteExec ["MWD_fnc_dogSay"];
 				sleep 3;
-				"Dog_Walk" call MWD_fnc_dogPlayMove;														
+				"Dog_Walk" call MWD_fnc_dogPlayMove;												
 			};
 			
 			case "TRACKING": {
@@ -125,10 +125,6 @@ params ["_dog"];
 						"Dog_Stop" call MWD_fnc_dogPlayMove;
 						[_dog, "whining", 0.3] remoteExec ["MWD_fnc_dogSay"];
 					};						
-					case (_distanceToHandler > 20) : {
-						// Let the handler catch up, walk in track direction
-						"Dog_Walk" call MWD_fnc_dogPlayMove;
-					};
 					case (_distanceToHandler < 10) : {
 						// Use random move to "un-lock" animation locks
 						//_dog playMoveNow (selectRandomWeighted ["Dog_Sprint", 0.8, "Dog_Run", 0.2]);

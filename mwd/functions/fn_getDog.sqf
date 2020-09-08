@@ -18,8 +18,10 @@
 _respawnTime = player getVariable ["MWD_RespawnTimer", 0];
 _respawnAllowed = time >= _respawnTime;
 if (!_respawnAllowed) exitWith {
-	titleText [format ["\n\nDog respawn allowed in %1 seconds", round (_respawnTime - time)], "PLAIN"];
+	_respawnMsg = format ["Dog respawn allowed in %1 seconds", round (_respawnTime - time)];
+	titleText ["\n\n"+_respawnMsg, "PLAIN"];
 	titleFadeOut 7;
+	systemChat _respawnMsg;
 };
 
 _dog = player getVariable ["MWD_Dog", objNull];
@@ -48,9 +50,29 @@ if (isNull _dog) then {
 	// Reset dog variable on handler if it gets killed
 	_dog addEventHandler ["Killed", {
 		params ["_unit", "_killer", "_instigator", "_useEffects"];
+		
 		player setVariable ["MWD_Dog", objNull];
 		player setVariable ["MWD_DogType", ""];
-		player setVariable ["MWD_RespawnTimer", time + MWD_Respawn];
+		
+		// If the dog handler kills her/his dog, double the respawn timer
+		if (_killer isEqualTo player) then {
+			_respawnMsg = format ["Djurplågare...respawntid för hunden dubblas"];
+			titleText ["\n\n"+_respawnMsg, "PLAIN"];
+			titleFadeOut 7;
+			systemChat _respawnMsg;
+			player setVariable ["MWD_RespawnTimer", time + (MWD_Respawn * 2)];
+		} 
+		else {
+			// Set respawn timer i.e. when the dog is allowed to respawn again
+			player setVariable ["MWD_RespawnTimer", time + MWD_Respawn];
+		};						
+		
+		// Remove any eventhandlers 
+		evId = _unit getVariable ["MWD_Draw3DEventHandlerId", -1];
+		if (evId > -1) then {
+			removeMissionEventHandler ["Draw3D", evId];
+			_dog setVariable ["MWD_Draw3DEventHandlerId", -1];
+		};
 	}];
 		
 	// Save dog on player's variables
