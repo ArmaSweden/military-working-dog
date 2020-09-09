@@ -30,16 +30,16 @@
 				if (!_isOnFoot && _wasOnFoot) then {
 					// Unit has entered a vehicle, stop tracking until they disembark
 					_group setVariable ["MWD_OnFoot", false];
-					systemChat "Unit has entered a vechile, stop tracking";
+					if (MWD_Debug) then {systemChat "Unit has entered a vechile, stop tracking";};
 					_stopCondition = true;
 				};				
 				if (!_isOnFoot && !_wasOnFoot) exitWith {
 					// Unit is still in the vehicle
-					systemChat "Unit still in vehicle";					
+					if (MWD_Debug) then {systemChat "Unit still in vehicle";};
 				};												
 				if (_isOnFoot && !_wasOnFoot) then {
 					// Unit has exited the vehicle, start a new track
-					systemChat "Unit exited the vehicle, continue tracking";
+					if (MWD_Debug) then {systemChat "Unit exited the vehicle, continue tracking";};
 					_group setVariable ["MWD_OnFoot", true];
 					_startNewTrack = true;
 				};
@@ -48,17 +48,17 @@
 				_isInWater = surfaceIsWater getPos leader _group;
 				_wasInWater = _group getVariable ["MWD_InWater", false];
 				if (_isInWater && !_wasInWater) then {
-					systemChat "Unit is in water, stop tracking";
+					if (MWD_Debug) then {systemChat "Unit is in water, stop tracking";};
 					_group setVariable ["MWD_InWater", true];
 					_stopCondition = true;
 				};				
 				if (_isInWater && _wasInWater) exitWith {
 					// Unit is still in water
-					systemChat "Unit still in water";					
+					if (MWD_Debug) then {systemChat "Unit still in water";};
 				};				
 				if (!_isInWater && _wasInWater) then {
 					// Unit is now on land again, start a new track
-					systemChat "Unit exited the water, continue tracking";
+					if (MWD_Debug) then {systemChat "Unit exited the water, continue tracking";};
 					_group setVariable ["MWD_InWater", false];
 					_startNewTrack = true;
 				};
@@ -67,12 +67,11 @@
 				if (_startNewTrack) then {						
 					// Check if previous track only contains one point, it means that the group is getting in and out of a vehicle on the same spot
 					_prevTrack = _tracks select (count _tracks - 1);
-					systemChat format ["Prevtrack size: %1", count _prevTrack];
 					if (count _prevTrack > 1) then {
 						_tracks pushBack [_currentPosition];
 					}
 					else {
-						systemChat "Prev track contains one point only, getting in and out of the vehicle?";
+						if (MWD_Debug) then {systemChat "Prev track contains one point only, getting in and out of the vehicle?";};
 					};
 					_startNewTrack = false;
 				};
@@ -119,12 +118,9 @@
 				// Update track timer
 				_group setVariable ["MWD_LastPosTimer", _timer + MWD_TrackCheckInterval];
 				
-			} else {
-				// The group is dead, remove tracked variable
-				_group setVariable ["MWD_Tracked", false];
-			}; 
+			}; // end if
 			
 		} forEach _trackedGroups;
 				
-	};
-};
+	}; // end while
+}; // end spawn

@@ -14,7 +14,7 @@
 //
 // MWD Global Settings
 // 
-MWD_Debug = true;				// print MWD_Debug info or not
+MWD_Debug = false;				// print MWD_Debug info or not
 MWD_Automark = true;      		// automagically mark track detection arrows on handlers local map
 MWD_TrackCheckInterval = 3;	    // server position check interval for tracked groups
 MWD_TriggerDistance = 50;    	// rough distance between trigger positions i.e. distance between two saved group positions

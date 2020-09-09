@@ -95,14 +95,16 @@ params ["_dog"];
 							// Reached end of track, stop and whine
 							"Dog_Walk" call MWD_fnc_dogPlayMove;
 							
-							[_dog, "whining", 0.5] remoteExec ["MWD_fnc_dogSay"];
+							[_dog, "whining", 0.4] remoteExec ["MWD_fnc_dogSay"];
 							
 							if (!([_trackedGroup, _trackIndex] in (_dog getVariable ["MWD_CompletedTracks", []]))) then {
-								// Add lost track marker
+								// Add in-game lost track marker
 								_dog getVariable ["MWD_Markers3D", []] pushBack [getPos _dog, "Spåret tappat"];
+								// Add automarker on handlers map
+								[getPos _dog, _dog getDir _trackEndPos] call MWD_fnc_autoMarker;
 								// Add this track [trackedGroup, trackIndex] to completed tracks array
-								_dog getVariable "MWD_CompletedTracks" pushBack [_trackedGroup, _trackIndex];
-								
+								_dog getVariable "MWD_CompletedTracks" pushBack [_trackedGroup, _trackIndex];																
+							
 								if (MWD_Debug) then {
 									systemChat format ["Reached end of track"];																
 								};

@@ -78,13 +78,19 @@ if (!isNull _dog && _unit == _dog) then {
 		_trackIcon = getMissionPath "mwd\sfx\track.paa";		
 		//_trackLostIcon = getMissionPath "mwd\sfx\track_lost.paa";
 		
-		_markers3D = _dog getVariable ["MWD_Markers3D", []];		
+		_markers3D = _dog getVariable ["MWD_Markers3D", []];
+		_noOfMarkers = count _markers3D;
+		if (_noOfMarkers > 3) then {
+			// Only show last three markers (to avoid clutter)
+			_markers3D = _markers3D select [_noOfMarkers - 3, 3];				
+		};
+		
 		{
 			_markerPos = _x select 0;
 			_makerText = _x select 1;
 			drawIcon3D [_trackIcon, [1,1,1,1], _markerPos, 0.5, 0.5, 0, _makerText, 2];						
 			
-		} forEach _markers3D;						
+		} forEach _markers3D;					
 	}];
 	// Save handle so we can delete it later on
 	_dog setVariable ["MWD_Draw3DEventHandlerId", evId];
